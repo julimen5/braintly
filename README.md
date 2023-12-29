@@ -25,6 +25,7 @@ The tasks of the challenge can be found [here](https://braintly.notion.site/Chal
 ### Run tests
 Ensure that the ENVIRONMENT is set and run it outside docker 
 
+`npm install`
 `npm run test:e2e`
 
 ## TODO & Explanations
