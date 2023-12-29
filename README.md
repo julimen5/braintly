@@ -34,3 +34,4 @@ Ensure that the ENVIRONMENT is set and run it outside docker
    1. Dependency injection
    2. Repository pattern
 4. In the frontend some types and proptypes are missing
+5. A service with events could be done in order to find which tasks are overdue

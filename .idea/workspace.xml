@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5393226b-ad0b-49cd-baed-9a14a4b26a7b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/config/automapper/automapper.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +69,7 @@
       <workItem from="1703615852252" duration="18907000" />
       <workItem from="1703779615212" duration="213000" />
       <workItem from="1703779839111" duration="913000" />
-      <workItem from="1703796510194" duration="31657000" />
+      <workItem from="1703796510194" duration="31750000" />
     </task>
     <servers />
   </component>
