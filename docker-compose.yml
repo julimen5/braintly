@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: db
+    image: mysql:latest
+    volumes:
+      - 'data-volume:/data/db'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=braintly
+    entrypoint: sh -c "
+      echo 'CREATE DATABASE IF NOT EXISTS braintly;' > /docker-entrypoint-initdb.d/init.sql;
+      /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+    ports:
+      - '3306:3306'
+    networks:
+      - mynetwork  # Nombre de la red para la comunicación entre servicios
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile  # Nombre del Dockerfile para el backend
+    ports:
+      - "4000:4000"  # Puerto en el que se ejecutará el backend (puerto del contenedor : puerto del host)
+    environment:
+      - PORT=4000
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=braintly
+      - MYSQL_HOST=database
+      - MYSQL_PORT=3306
+    networks:
+      - mynetwork  # Nombre de la red para la comunicación entre servicios
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile  # Nombre del Dockerfile para el frontend
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:4000/
+    ports:
+      - "3000:3000"  # Puerto en el que se ejecutará el frontend (puerto del contenedor : puerto del host)
+    networks:
+      - mynetwork  # Nombre de la red para la comunicación entre servicios
+    depends_on:
+      - backend  # Define la dependencia del servicio frontend con el servicio backend
+
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  data-volume:
+#  redis_data:
